@@ -1,12 +1,34 @@
 package com.nnk.springboot.domain;
 
+import lombok.Data;
+
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-import java.sql.Timestamp;
+import javax.validation.constraints.Size;
+
 
 @Entity
+@Data
 @Table(name = "rating")
 public class Rating {
-    // TODO: Map columns in data table RATING with corresponding java fields
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "Id")
+    private Integer id;
+
+    @Size(max = 125)
+    @Column(name = "moodysRating")
+    private String moodysRating;
+
+    @Size(max = 125)
+    @Column(name = "sandPRating")
+    private String sandPRating;
+
+    @Size(max = 125)
+    @Column(name = "fitchRating")
+    private String fitchRating;
+
+    @Column(name = "orderNumber")
+    private Integer orderNumber;
+
 }
