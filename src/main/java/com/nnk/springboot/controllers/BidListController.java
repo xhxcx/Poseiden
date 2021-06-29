@@ -1,6 +1,10 @@
 package com.nnk.springboot.controllers;
 
 import com.nnk.springboot.domain.BidList;
+import com.nnk.springboot.services.BidListService;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -11,45 +15,104 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.validation.Valid;
 
-
+/**
+ * Manage endpoints for BidList entity
+ */
 @Controller
 public class BidListController {
-    // TODO: Inject Bid service
 
+    @Autowired
+    private BidListService bidListService;
+
+    private static final Logger logger = LogManager.getLogger(BidListController.class);
+
+    /**
+     * Add to the model the bidList list to display
+     * @param model
+     * @return template name to show bidList listing
+     */
     @RequestMapping("/bidList/list")
     public String home(Model model)
     {
-        // TODO: call service find all bids to show to the view
+        logger.debug("Display bidList list");
+        model.addAttribute("bidLists", bidListService.getAll());
         return "bidList/list";
     }
 
+    /**
+     * Show the addBidForm
+     * @param bid
+     * @return template name to show add bid form
+     */
     @GetMapping("/bidList/add")
     public String addBidForm(BidList bid) {
+        logger.info("Show add bidList form");
         return "bidList/add";
     }
 
+    /**
+     * Validate if the submitted bidList is correct and then create it or not
+     * @param bid to create
+     * @param result contains errors if the bid is not valid
+     * @param model
+     * @return template name to show, redirection to bidList listing if bid is valid, or else add form
+     */
     @PostMapping("/bidList/validate")
     public String validate(@Valid BidList bid, BindingResult result, Model model) {
-        // TODO: check data valid and save to db, after saving return bid list
-        return "bidList/add";
-    }
-
-    @GetMapping("/bidList/update/{id}")
-    public String showUpdateForm(@PathVariable("id") Integer id, Model model) {
-        // TODO: get Bid by Id and to model then show to the form
-        return "bidList/update";
-    }
-
-    @PostMapping("/bidList/update/{id}")
-    public String updateBid(@PathVariable("id") Integer id, @Valid BidList bidList,
-                             BindingResult result, Model model) {
-        // TODO: check required fields, if valid call service to update Bid and return list Bid
+        if(result.hasErrors()) {
+            logger.error("Validation error adding a new bid on fields : " + result.getAllErrors());
+            return "bidList/add";
+        }
+        bidListService.createBidList(bid);
+        logger.info("Create new bid");
         return "redirect:/bidList/list";
     }
 
+    /**
+     * Show the update form with prefilled values
+     * @param id of the bid we need to update
+     * @param model
+     * @return template name to show update bid form
+     */
+    @GetMapping("/bidList/update/{id}")
+    public String showUpdateForm(@PathVariable("id") Integer id, Model model) {
+        BidList bidListToUpdate = bidListService.findById(id).orElseThrow(() -> new IllegalArgumentException("No bidList found for this id :" + id));
+        model.addAttribute("bidListToUpdate", bidListToUpdate);
+        logger.info("Update bid form displayed to edit bid : " + bidListToUpdate.getBidListId());
+        return "bidList/update";
+    }
+
+    /**
+     * Validate if the submitted bidList is correct and then update it or not
+     * @param id of the bid we need to update
+     * @param bidList BidList with new values
+     * @param result contains errors if the bid is not valid
+     * @param model
+     * @return template name to show, redirection to bidList listing if bid is valid, or else update form
+     */
+    @PostMapping("/bidList/update/{id}")
+    public String updateBid(@PathVariable("id") Integer id, @Valid BidList bidList,
+                             BindingResult result, Model model) {
+        if(result.hasErrors()) {
+            logger.error("Validation error updating bid : " + id + " on fields : " + result.getAllErrors());
+            return "bidList/update";
+        }
+        bidListService.updateBidList(bidList);
+        logger.info("Update bid for id : " + id);
+        return "redirect:/bidList/list";
+    }
+
+    /**
+     * Call deletion of the given BidList
+     * @param id of the bid we need to delete
+     * @param model
+     * @return template name to show as a redirection to bidList listing if id was found, else throw IllegalArgumentException
+     */
     @GetMapping("/bidList/delete/{id}")
     public String deleteBid(@PathVariable("id") Integer id, Model model) {
-        // TODO: Find Bid by Id and delete the bid, return to Bid list
+        BidList bidListToDelete = bidListService.findById(id).orElseThrow(() -> new IllegalArgumentException("No bidList found for this id :" + id));
+        bidListService.deleteBidList(bidListToDelete);
+        logger.info("Delete bid for id " + id);
         return "redirect:/bidList/list";
     }
 }

@@ -1,11 +1,9 @@
 package com.nnk.springboot.domain;
 
 import lombok.Data;
-import org.springframework.beans.factory.annotation.Required;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
-import java.sql.Date;
 import java.sql.Timestamp;
 
 @Entity
@@ -18,12 +16,14 @@ public class BidList {
     @Column(name = "BidListId")
     private Integer bidListId;
 
-    @NotNull
+    @NotNull(message = "Account is mandatory")
+    @NotBlank(message = "Account is mandatory")
     @Size(max = 30)
     @Column(name = "account")
     private String account;
 
-    @NotNull
+    @NotNull(message = "Type is mandatory")
+    @NotBlank(message = "Type is mandatory")
     @Size(max = 30)
     @Column(name = "type")
     private String type;

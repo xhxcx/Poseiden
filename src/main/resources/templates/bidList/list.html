@@ -37,7 +37,13 @@
 				</tr>
 			</thead>
 			<tbody>
-				<!-- TODO: Show all Bids to the table, the Action column will have Edit & Delete buttons -->
+				<tr class="py-3" th:each="bidList : ${bidLists}">
+					<td th:text="${bidList.bidListId}"></td>
+					<td th:text="${bidList.account}"></td>
+					<td th:text="${bidList.type}"></td>
+					<td th:text="${bidList.bidQuantity}"></td>
+					<td class="text-center"><a th:href="@{/bidList/update/{id}(id=${bidList.bidListId})}">Edit</a>&nbsp; | &nbsp;<a th:href="@{/bidList/delete/{id}(id=${bidList.bidListId})}">Delete</a> </td>
+				</tr>
 			</tbody>
 		</table>
 	</div>

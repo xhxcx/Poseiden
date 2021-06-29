@@ -1,4 +1,3 @@
-/*
 package com.nnk.springboot;
 
 import com.nnk.springboot.domain.BidList;
@@ -22,7 +21,10 @@ public class BidTests {
 
 	@Test
 	public void bidListTest() {
-		BidList bid = new BidList("Account Test", "Type Test", 10d);
+		BidList bid = new BidList();
+		bid.setAccount("Account Test");
+		bid.setType("Type Test");
+		bid.setBidQuantity(10d);
 
 		// Save
 		bid = bidListRepository.save(bid);
@@ -45,4 +47,3 @@ public class BidTests {
 		Assert.assertFalse(bidList.isPresent());
 	}
 }
-*/
