@@ -1,4 +1,3 @@
-/*
 package com.nnk.springboot;
 
 import com.nnk.springboot.domain.Rating;
@@ -22,7 +21,11 @@ public class RatingTests {
 
 	@Test
 	public void ratingTest() {
-		Rating rating = new Rating("Moodys Rating", "Sand PRating", "Fitch Rating", 10);
+		Rating rating = new Rating();
+		rating.setMoodysRating("Moodys Rating");
+		rating.setSandPRating("Sand PRating");
+		rating.setFitchRating("Fitch Rating");
+		rating.setOrderNumber(10);
 
 		// Save
 		rating = ratingRepository.save(rating);
@@ -45,4 +48,3 @@ public class RatingTests {
 		Assert.assertFalse(ratingList.isPresent());
 	}
 }
-*/

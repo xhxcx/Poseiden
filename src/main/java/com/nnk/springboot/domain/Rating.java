@@ -16,15 +16,15 @@ public class Rating {
     @Column(name = "Id")
     private Integer id;
 
-    @Size(max = 125)
+    @Size(max = 125, message = "Text should be 125 characters max")
     @Column(name = "moodysRating")
     private String moodysRating;
 
-    @Size(max = 125)
+    @Size(max = 125, message = "Text should be 125 characters max")
     @Column(name = "sandPRating")
     private String sandPRating;
 
-    @Size(max = 125)
+    @Size(max = 125, message = "Text should be 125 characters max")
     @Column(name = "fitchRating")
     private String fitchRating;
 
