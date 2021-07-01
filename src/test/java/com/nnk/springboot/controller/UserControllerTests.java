@@ -140,7 +140,7 @@ public class UserControllerTests {
     }
 
     @Test
-    public void deleteShouldRedirectTolistListAndDeleteIsCalledTest() throws Exception {
+    public void deleteShouldRedirectToListAndDeleteIsCalledTest() throws Exception {
 
         User existingUser = new User();
         existingUser.setUsername("userName");

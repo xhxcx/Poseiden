@@ -40,7 +40,7 @@ public class RatingControllerTests {
     }
 
     @Test
-    public void getAddBidFormShouldReturnToAddFormTest() throws Exception {
+    public void getAddRatingFormShouldReturnToAddFormTest() throws Exception {
 
         mockMvc.perform(get("/rating/add"))
                 .andExpect(view().name("rating/add"))
@@ -126,7 +126,7 @@ public class RatingControllerTests {
     }
 
     @Test
-    public void deleteBidShouldRedirectToBidlistListAndDeleteIsCalledTest() throws Exception {
+    public void deleteRatingShouldRedirectToRatingListAndDeleteIsCalledTest() throws Exception {
 
         Rating existingRating = new Rating();
         existingRating.setOrderNumber(1);
@@ -141,7 +141,7 @@ public class RatingControllerTests {
     }
 
     @Test
-    public void deleteBidShouldThrowIllegalArgumentExceptionWhenIdDoesntExistTest() {
+    public void deleteRatingShouldThrowIllegalArgumentExceptionWhenIdDoesntExistTest() {
 
         when(ratingServiceMock.findById(anyInt())).thenReturn(Optional.empty());
 

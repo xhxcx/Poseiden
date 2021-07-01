@@ -40,7 +40,7 @@ public class RuleNameControllerTests {
     }
 
     @Test
-    public void getAddBidFormShouldReturnToAddFormTest() throws Exception {
+    public void getAddRuleNameFormShouldReturnToAddFormTest() throws Exception {
 
         mockMvc.perform(get("/ruleName/add"))
                 .andExpect(view().name("ruleName/add"))
@@ -126,7 +126,7 @@ public class RuleNameControllerTests {
     }
 
     @Test
-    public void deleteShouldRedirectToBidlistListAndDeleteIsCalledTest() throws Exception {
+    public void deleteShouldRedirectToRuleNameListAndDeleteIsCalledTest() throws Exception {
 
         RuleName existingRuleName = new RuleName();
         existingRuleName.setName("Correct name");

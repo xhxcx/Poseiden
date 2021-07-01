@@ -40,7 +40,7 @@ public class CurvePointControllerTests {
     }
 
     @Test
-    public void getAddBidFormShouldReturnToAddFormTest() throws Exception {
+    public void getAddCurvePointFormShouldReturnToAddFormTest() throws Exception {
 
         mockMvc.perform(get("/curvePoint/add"))
                 .andExpect(view().name("curvePoint/add"))
@@ -133,7 +133,7 @@ public class CurvePointControllerTests {
     }
 
     @Test
-    public void deleteBidShouldRedirectToBidlistListAndDeleteIsCalledTest() throws Exception {
+    public void deleteCurvePointShouldRedirectToCurvePointListAndDeleteIsCalledTest() throws Exception {
 
         CurvePoint existingCurvePoint = new CurvePoint();
         existingCurvePoint.setCurveId(1);
@@ -150,7 +150,7 @@ public class CurvePointControllerTests {
     }
 
     @Test
-    public void deleteBidShouldThrowIllegalArgumentExceptionWhenIdDoesntExistTest() {
+    public void deleteCurvePointShouldThrowIllegalArgumentExceptionWhenIdDoesntExistTest() {
 
         when(curvePointServiceMock.findById(anyInt())).thenReturn(Optional.empty());
 

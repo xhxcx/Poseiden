@@ -133,7 +133,7 @@ public class TradeControllerTests {
     }
 
     @Test
-    public void deleteShouldRedirectTolistListAndDeleteIsCalledTest() throws Exception {
+    public void deleteShouldRedirectToListAndDeleteIsCalledTest() throws Exception {
 
         Trade existingTrade = new Trade();
         existingTrade.setAccount("account");

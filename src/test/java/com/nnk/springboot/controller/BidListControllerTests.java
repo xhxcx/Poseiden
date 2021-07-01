@@ -31,8 +31,6 @@ public class BidListControllerTests {
     @MockBean
     private BidListService bidListServiceMock;
 
-    @MockBean
-    private BidListRepository bidListRepositoryMock;
 
     @Test
     public void homeShouldReturnOkAndBidListPageTest() throws Exception {
