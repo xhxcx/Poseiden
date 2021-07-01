@@ -94,6 +94,8 @@ public class CurveController {
     public String updateCurvePoint(@PathVariable("id") Integer id, @Valid CurvePoint curvePoint,
                              BindingResult result, Model model) {
         if(result.hasErrors()) {
+            CurvePoint curvePointToUpdate = curvePointService.findById(id).orElseThrow(() -> new IllegalArgumentException("No curvePoint found for this id :" + id));
+            model.addAttribute("curvePointToUpdate", curvePointToUpdate);
             logger.error("Validation error updating curvePoint : " + id + " on fields : " + result.getAllErrors());
             return "curvePoint/update";
         }

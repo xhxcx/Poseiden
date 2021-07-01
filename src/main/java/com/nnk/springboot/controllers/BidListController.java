@@ -94,6 +94,8 @@ public class BidListController {
     public String updateBid(@PathVariable("id") Integer id, @Valid BidList bidList,
                              BindingResult result, Model model) {
         if(result.hasErrors()) {
+            BidList bidListToUpdate = bidListService.findById(id).orElseThrow(() -> new IllegalArgumentException("No bidList found for this id :" + id));
+            model.addAttribute("bidListToUpdate", bidListToUpdate);
             logger.error("Validation error updating bid : " + id + " on fields : " + result.getAllErrors());
             return "bidList/update";
         }
