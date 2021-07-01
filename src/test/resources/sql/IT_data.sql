@@ -22,3 +22,9 @@ INSERT INTO `rating`( `moodysRating`, `sandPRating`, `fitchRating`, `orderNumber
 VALUES ('moody S Rating 1','sand P Rating','fitch Rating 1',1);
 INSERT INTO `rating`( `moodysRating`, `sandPRating`, `fitchRating`, `orderNumber`)
 VALUES ('','sand Rating 2','fitch',2);
+
+-- RuleName
+INSERT INTO `rulename`( `name`, `description`, `json`, `template`, `sqlStr`, `sqlPart`)
+VALUES ('name 1','description 1', 'json 1','template 1','sqlStr 1','sqlPart 1');
+INSERT INTO `rulename`( `name`, `description`, `json`, `template`, `sqlStr`, `sqlPart`)
+VALUES ('name 2','description 2', 'json 2',null,'sqlStr 2','sqlPart 2');
