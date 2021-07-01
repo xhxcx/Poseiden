@@ -4,6 +4,7 @@ TRUNCATE curvepoint;
 TRUNCATE rating;
 TRUNCATE rulename;
 TRUNCATE trade;
+TRUNCATE users;
 
 -- bidList
 INSERT INTO `bidlist` (`account`, `type`, `bidQuantity`)
@@ -34,3 +35,9 @@ INSERT INTO `trade` (`account`, `type`, `buyQuantity`)
 VALUES ( 'Account trade 1',    'Type trade 1',    1);
 INSERT INTO `trade` (`account`, `type`, `buyQuantity`)
 VALUES ( 'Account trade 2',    'Type trade 2',    10);
+
+-- User
+INSERT INTO Users(`fullname`, `username`, `password`, `role`)
+VALUES('Fullname user 1', 'Username user 1', 'pwd user 1', 'ADMIN');
+INSERT INTO Users(`fullname`, `username`, `password`, `role`)
+VALUES ('Fullname user 2', 'Username user 2', 'pwd user 2', 'USER');
