@@ -18,12 +18,14 @@ public class Trade {
     @Column(name = "TradeId")
     private Integer tradeId;
 
-    @NotNull
+    @NotNull(message = "Account is mandatory")
+    @NotBlank(message = "Account is mandatory")
     @Size(max = 30)
     @Column(name = "account")
     private String account;
 
-    @NotNull
+    @NotNull(message = "Account is mandatory")
+    @NotBlank(message = "Account is mandatory")
     @Size(max = 30)
     @Column(name = "type")
     private String type;

@@ -28,3 +28,9 @@ INSERT INTO `rulename`( `name`, `description`, `json`, `template`, `sqlStr`, `sq
 VALUES ('name 1','description 1', 'json 1','template 1','sqlStr 1','sqlPart 1');
 INSERT INTO `rulename`( `name`, `description`, `json`, `template`, `sqlStr`, `sqlPart`)
 VALUES ('name 2','description 2', 'json 2',null,'sqlStr 2','sqlPart 2');
+
+-- Trade
+INSERT INTO `trade` (`account`, `type`, `buyQuantity`)
+VALUES ( 'Account trade 1',    'Type trade 1',    1);
+INSERT INTO `trade` (`account`, `type`, `buyQuantity`)
+VALUES ( 'Account trade 2',    'Type trade 2',    10);
