@@ -20,7 +20,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
                 .antMatchers("/bidList/**", "/rating/**", "/ruleName/**", "/trade/**", "/curvePoint/**").hasAnyAuthority("ADMIN", "USER")
-                .antMatchers("/user/**").permitAll()
+                .antMatchers("/user/**").hasAnyAuthority("ADMIN")
                 .and().formLogin()  //login configuration
                 .defaultSuccessUrl("/bidList/list")
                 .and().logout()    //logout configuration
